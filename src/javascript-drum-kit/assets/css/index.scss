@@ -1,3 +1,44 @@
-body{
-  background-image: url('../image/background.jpg');
+body {
+  background-image: url("../image/background.jpg");
+  padding: 0;
+  margin: 0;
+  font-family: sans-serif;
+  div[keys] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    .key {
+      user-select: none;
+      cursor: pointer;
+      background-color: #80808052;
+      margin: 0 0.5rem;
+      text-align: center;
+      border: 3px black solid;
+      color: white;
+      display: flex;
+      font-size: 2rem;
+      flex-direction: column;
+      min-width: 5rem;
+      border-radius: 5px;
+      transition:transform 0.05s ease;
+      box-shadow: 0 0 1rem black;
+      .tips {
+        font-size: 0.3rem;
+        color: orange;
+      }
+      &:first-of-type {
+        margin-left: 16rem;
+      }
+      &:last-of-type {
+        margin-right: 16rem;
+      }
+    }
+    .click {
+      border-color: #ffc600;
+      transform: scale(1.1);
+      box-shadow: 0 0 1rem #ffc600;
+    }
+  }
 }

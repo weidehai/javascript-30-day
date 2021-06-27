@@ -1,21 +1,29 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require("path");
 
+
 module.exports = {
-  entry: "./src/javascript-drum-kit/index.js",
+  entry: {
+    'index':'./src/index.js',
+    'drumKit':"./src/javascript-drum-kit/index.js",
+    'clock':'./src/js-css-clock/index.js',
+    'css-variables':'./src/css-variables/index.js',
+    'array':'./src/array/index.js',
+  },
   output: {
-    path: path.resolve(__dirname, "./src/javascript-drum-kit/dist"),
-    filename: "index_bundle.js",
+    path: path.resolve(__dirname, "./dist"),
+    filename: "[name].js",
   },
   devServer: {
-    contentBase: "./src/javascript-drum-kit/dist",
+    contentBase: "./dist",
     port: 1234,
   },
   module: {
     rules: [
       {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
         test: /\.(jpg|png)$/,
@@ -32,9 +40,36 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      template: "./src/index.html",
+      inject: "body",
+      filename:'index.html',
+      chunks:['index']
+    }),
+    new HtmlWebpackPlugin({
       template: "./src/javascript-drum-kit/assets/index.html",
       inject: "body",
+      filename:'javascript-drum-kit.html',
+      chunks:['drumKit']
     }),
+    new HtmlWebpackPlugin({
+      template: "./src/js-css-clock/assets/index.html",
+      inject: "body",
+      filename:'clock.html',
+      chunks:['clock']
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/css-variables/assets/index.html",
+      inject: "body",
+      filename:'css-variables.html',
+      chunks:['css-variables']
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/array/assets/index.html",
+      inject: "body",
+      filename:'array.html',
+      chunks:['array']
+    }),
+    new MiniCssExtractPlugin()
   ],
   resolve: {
     alias: {

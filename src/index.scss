@@ -1,0 +1,30 @@
+body{
+  padding: 0;
+  margin: 0;
+  background-image: linear-gradient(pink,yellow,#ccff00);
+  nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    a[item]{
+      text-align: center;
+      text-decoration: none;
+      max-width: 250px;
+      min-width: 250px;
+      padding: 0.9rem;
+      border: 1px solid #80808073;
+      box-shadow: 0 0 5px #80808073;
+      background-color: #8080802b;
+      margin: 10px;
+      border-radius: 5px;
+      color: #00bcd4b0;
+      transition: all 0.1s;
+      &:hover{
+        background-color: #8080806e;
+        color: #00bcd4;
+      }
+    }
+  }
+}

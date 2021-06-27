@@ -36,7 +36,7 @@ let keys = document.querySelectorAll(".key");
 keys.forEach((key) => {
   key.addEventListener("click", function () {
     setClickStyle(this);
-    sounds[this.getAttribute("data-sound")].play();
+    play(this.getAttribute('data-sound'))
   });
 });
 keys.forEach((key) => {
@@ -46,10 +46,15 @@ keys.forEach((key) => {
 });
 document.addEventListener("keydown", (e) => {
   let key = e.key;
-  sounds[keyMap[key]].play()
+  play(keyMap[key])
   setClickStyle(document.querySelector(`[data-sound=${keyMap[key]}]`));
 });
 
 function setClickStyle(target) {
-  target.classList.add("click");
+  target && target.classList.add("click");
+}
+
+function play(soundId) {
+  let sound = sounds[soundId]
+  sound && (sound.currentTime=0,sound.play())
 }

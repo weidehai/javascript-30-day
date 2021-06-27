@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>css-variables</title>
+</head>
+<body>
+  <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
+  <div control>
+    <span title>Spacing: </span><input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+    <span title>Blur: </span><input type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+    <span title>Base Color </span><input type="color" name="base" value="#89aea4">
+  </div>
+  <div class="parameter">img { padding: 10px; filter: blur(10px); background: #89aea4; }</div>
+  <div>
+    <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500" alt="">
+  </div>
+</body>
+</html>

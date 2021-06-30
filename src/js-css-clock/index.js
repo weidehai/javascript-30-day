@@ -1,61 +1,52 @@
-import "./assets/css/index.scss";
+let switcher = document.querySelector("button");
+let cc = "clock1";
+const clocks = {
+  clock1: function () {
+    import("./assets/js/clock1").then((clock) => {
+      console.log(clock)
+      if(!style.clock1){
+        style.clock1 = document.querySelector('style').innerText
+      }else{
+        restoreStyle()
+      }
+      new clock.clock().init();
+    });
+  },
+  clock2: function () {
+    import("./assets/js/clock2").then((clock) => {
+      console.log(clock)
+      if(!style.clock1){
+        style.clock1 = document.querySelector('style').innerText
+      }else{
+        restoreStyle()
+      }
+      new clock.clock().init();
+    });
+  },
+};
 
-let task = null
-let second = document.querySelector("[second]");
-let min = document.querySelector("[min]");
-let hour = document.querySelector("[hour]");
-const hands = [second, min, hour];
+const style = {
+  clock1: null,
+  clock2: null,
+};
 
 function init() {
-  setHand(timeToDeg(getTime()));
-  task = setInterval(update, 1000);
+  clocks[cc]();
+  switcher.addEventListener("click", () => {
+    cc = cc === "clock1" ? "clock2" : "clock1";
+    clearStyle();
+    clocks[cc]();
+  });
 }
 
-function update() {
-  setHand(setAnimation(timeToDeg(getTime())));
+function clearStyle() {
+  document.querySelector("style")?.remove();
 }
 
-function setHand(degs) {
-  for(let i=0;i<hands.length;i++){
-    hands[i].style.transform = `rotate(${degs[i]}deg)`
-  }
+function restoreStyle(){
+  let tstyle = document.createElement('style')
+  tstyle.innerText = style[cc]
+  document.head.appendChild(tstyle)
 }
 
-function setAnimation(degs) {
-  if(!degs){
-    hands.forEach(hand=>{
-      hand.style.transition = "none";
-    })
-    return
-  }
-  for(let i=0;i<hands.length;i++){
-    if(degs[i]==0){
-      hands[i].style.transition = "none";
-    }else{
-      hands[i].style.transition = `transform ${(i==0||i==1)?0.05:0.5}s cubic-bezier(0.9, 0.54, 0.26, 1.68)`;
-    }
-  }
-  return degs
-}
-
-function getTime() {
-  let time = new Date();
-  return [time.getSeconds(), time.getMinutes(), time.getHours()];
-}
-
-function timeToDeg(times) {
-  return [times[0] * 6, times[1] * 6, (times[2] + times[1] / 60) * 30];
-}
-
-// document.addEventListener("visibilitychange", function() {
-//   if(document.visibilityState === 'visible'){
-//     clearInterval(task)
-//     setAnimation();
-//     setHand(timeToDeg(getTime()));
-//     task = setInterval(update, 1000);
-//   }
-// });
-
-setTimeout(() => {
-  init();
-}, 500);
+init();

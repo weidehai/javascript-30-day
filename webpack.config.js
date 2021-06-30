@@ -7,7 +7,8 @@ module.exports = {
   entry: {
     'index':'./src/index.js',
     'drumKit':"./src/javascript-drum-kit/index.js",
-    'clock':'./src/js-css-clock/index.js',
+    'clock1':'./src/js-css-clock/assets/js/clock1.js',
+    'clock2':'./src/js-css-clock/assets/js/clock2.js',
     'css-variables':'./src/css-variables/index.js',
     'array':'./src/array/index.js',
   },
@@ -55,7 +56,7 @@ module.exports = {
       template: "./src/js-css-clock/assets/index.html",
       inject: "body",
       filename:'clock.html',
-      chunks:['clock']
+      chunks:['clock1']
     }),
     new HtmlWebpackPlugin({
       template: "./src/css-variables/assets/index.html",

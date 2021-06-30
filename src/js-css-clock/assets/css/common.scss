@@ -1,0 +1,23 @@
+html {
+  background-image: url("../image/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    .button {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+      button {
+        height: 2rem;
+        width: 4.5rem;
+      }
+    }
+  }
+}

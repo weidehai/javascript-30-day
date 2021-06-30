@@ -88,15 +88,30 @@ const tasks = [
   },
   {
 //3. Sort the inventors by birthdate, oldest to youngest
+//年份由小到大
     func:function(){
-      let result = inventors.sort((a,b)=>{
-        return a.year-b.year
-      })
-      console.log(result)
+      let result = inventors.sort((a,b)=>a.year>b.year?1:-1)
+      console.table(result)
     }
   },
+//4. How many years did all the inventors live?
+   {
+     func:function(){
+      let result = inventors.reduce((total,item)=>item.passed-item.year+total,0)
+      console.log(result)
+     }
+   },
+   // 5. Sort the inventors by years lived
+   {
+    func:function(){
 
+    }
+   }
 ]
+
+
+
+
 
 function init(){
   let buttons = document.querySelectorAll('button')

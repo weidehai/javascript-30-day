@@ -31,6 +31,8 @@
       'Berra, Yogi', 'Berry, Halle', 'Berry, Wendell', 'Bethea, Erin', 'Bevan, Aneurin', 'Bevel, Ken',
       'Biden, Joseph', 'Bierce, Ambrose', 'Biko, Steve', 'Billings, Josh', 'Biondo, Frank', 'Birrell, Augustine',
       'Black Elk', 'Blair, Robert', 'Blair, Tony', 'Blake, William'];
+
+      const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck', 'pogostick'];
     </pre>
     <ul>
       <li>打开dev tool切换到console面板，点击<code>run</code>按钮查看执行结果,点击<code>▶</code>展开符查看源码</li>
@@ -58,40 +60,49 @@ console.log(result)
       <li>
         <details>
           <summary>3. Sort the inventors by birthdate, oldest to youngest&nbsp;&nbsp;&nbsp;&nbsp;<button>run</button></summary>
-<pre>Array.prototype.filter</pre>
+<pre>let result = inventors.sort((a, b) => (a.year > b.year ? 1 : -1));</pre>
         </details>
       </li>
       <li>
         <details>
           <summary>4. How many years did all the inventors live?&nbsp;&nbsp;&nbsp;&nbsp;<button>run</button></summary>
-          <pre>Array.prototype.filter</pre>
+<pre>let result = inventors.reduce((total, item) => item.passed - item.year + total, 0);</pre>
         </details>
       </li>
       <li>
         <details>
           <summary>5. Sort the inventors by years lived&nbsp;&nbsp;&nbsp;&nbsp;<button>run</button></summary>
-          <pre>Array.prototype.filter</pre>
+<pre>
+let result = inventors.sort((a, b) => {
+  let lived1 = a.passed - a.year;
+  let lived2 = a.passed - a.year;
+  lived1 > lived2 ? -1 : 1;
+});
+</pre>
         </details>
       </li>
       <li>
         <details>
-          <summary>6. create a list of Boulevards in Paris that contain 'de' anywhere in the name&nbsp;&nbsp;&nbsp;&nbsp;<button>run</button></summary>
-          <pre>Array.prototype.filter</pre>
+          <summary>6. Sort the people alphabetically by last name&nbsp;&nbsp;&nbsp;&nbsp;<button>run</button></summary>
+<pre>
+let result = people.sort((a, b) => {
+  let [aLast] = a.split(", ");
+  let [bLast] = b.split(", ");
+  aLast > bLast ? -1 : 1;
+});
+</pre>
         </details>
       </li>
       <li>
         <details>
-          <summary>7. Sort the people alphabetically by last name&nbsp;&nbsp;&nbsp;&nbsp;<button>run</button></summary>
-          <pre>Array.prototype.filter</pre>
+          <summary>7. Sum up the instances of each of these&nbsp;&nbsp;&nbsp;&nbsp;<button>run</button></summary>
+<pre>let result = {};
+data.forEach((item) => {
+  if (!result[item]) result[item] = 0;
+  result[item]++;
+});</pre>
         </details>
       </li>
-      <li>
-        <details>
-          <summary>8. Sum up the instances of each of these&nbsp;&nbsp;&nbsp;&nbsp;<button>run</button></summary>
-          <pre>Array.prototype.filter</pre>
-        </details>
-      </li>
-
     </ul>
   </body>
 </html>

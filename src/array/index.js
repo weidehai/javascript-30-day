@@ -64,60 +64,100 @@ const people = [
   "Blake, William",
 ];
 
+const data = [
+  "car",
+  "car",
+  "truck",
+  "truck",
+  "bike",
+  "walk",
+  "car",
+  "van",
+  "bike",
+  "walk",
+  "car",
+  "van",
+  "car",
+  "truck",
+  "pogostick",
+];
 
 const tasks = [
   {
-// Array.prototype.filter()
-// 1. Filter the list of inventors for those who were born in the 1500's
-    func:function(){
-      let result = inventors.filter(inventor=>{
-        return inventor.year>=1500 && inventor.year<1600
-      })
-      console.table(result)
-    }
+    // Array.prototype.filter()
+    // 1. Filter the list of inventors for those who were born in the 1500's
+    func: function () {
+      let result = inventors.filter((inventor) => {
+        return inventor.year >= 1500 && inventor.year < 1600;
+      });
+      console.table(result);
+    },
   },
   {
-// Array.prototype.map()
-// 2. Give us an array of the inventor first and last names
-    func:function(){
-      let result = inventors.map(inventor=>{
-        return `${inventor.first} ${inventor.last}`
-      })
-      console.log(result)
-    }
+    // Array.prototype.map()
+    // 2. Give us an array of the inventor first and last names
+    func: function () {
+      let result = inventors.map((inventor) => {
+        return `${inventor.first} ${inventor.last}`;
+      });
+      console.log(result);
+    },
   },
   {
-//3. Sort the inventors by birthdate, oldest to youngest
-//年份由小到大
-    func:function(){
-      let result = inventors.sort((a,b)=>a.year>b.year?1:-1)
-      console.table(result)
-    }
+    //3. Sort the inventors by birthdate, oldest to youngest
+    //年份由小到大
+    func: function () {
+      let result = inventors.sort((a, b) => (a.year > b.year ? 1 : -1));
+      console.table(result);
+    },
   },
-//4. How many years did all the inventors live?
-   {
-     func:function(){
-      let result = inventors.reduce((total,item)=>item.passed-item.year+total,0)
-      console.log(result)
-     }
-   },
-   // 5. Sort the inventors by years lived
-   {
-    func:function(){
+  //4. How many years did all the inventors live?
+  {
+    func: function () {
+      let result = inventors.reduce((total, item) => item.passed - item.year + total, 0);
+      console.log(result);
+    },
+  },
+  // 5. Sort the inventors by years lived
+  {
+    func: function () {
+      let result = inventors.sort((a, b) => {
+        let lived1 = a.passed - a.year;
+        let lived2 = a.passed - a.year;
+        lived1 > lived2 ? -1 : 1;
+      });
+      console.table(result);
+    },
+  },
+  //6. Sort the people alphabetically by last name
+  {
+    func: function () {
+      let result = people.sort((a, b) => {
+        let [aLast] = a.split(", ");
+        let [bLast] = b.split(", ");
+        aLast > bLast ? -1 : 1;
+      });
+      console.table(result);
+    },
+  },
+  //Sum up the instances of each of these
+  {
+    func: function () {
+      let result = {};
+      data.forEach((item) => {
+        if (!result[item]) result[item] = 0;
+        result[item]++;
+      });
+      console.table(result)
+    },
+  },
+];
 
-    }
-   }
-]
-
-
-
-
-
-function init(){
-  let buttons = document.querySelectorAll('button')
-  for(let i=0;i<tasks.length;i++){
-    buttons[i].addEventListener('click',tasks[i].func)
+function init() {
+  let buttons = document.querySelectorAll("button");
+  for (let i = 0; i < tasks.length; i++) {
+    buttons[i].addEventListener("click", tasks[i].func);
   }
 }
 
-init()
+init();

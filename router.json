@@ -1,0 +1,37 @@
+{
+  "router": [
+    {
+      "template": "./src/index.html",
+      "chunks":"index",
+      "filename":"index.html"
+    },
+    {
+      "nav":true,
+      "label": "✈ javascript-drum-kit",
+      "href": "./javascript-drum-kit.html",
+      "template": "./src/javascript-drum-kit/assets/index.html",
+      "chunks":"drumKit"
+    },
+    {
+      "nav":true,
+      "label": "✈ js-css-clock",
+      "href": "./clock.html",
+      "template": "./src/js-css-clock/assets/index.html",
+      "chunks":"clock1"
+    },
+    {
+      "nav":true,
+      "label": "✈ css-variables",
+      "href": "./css-variables.html",
+      "template": "./src/css-variables/assets/index.html",
+      "chunks":"css-variables"
+    },
+    {
+      "nav":true,
+      "label": "✈ array",
+      "href": "./array.html",
+      "template": "./src/array/assets/index.html",
+      "chunks":"array"
+    }
+  ]
+}

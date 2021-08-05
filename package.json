@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "webpack serve --mode=development --open",
-    "build": "webpack --mode=production"
+    "serve": "node ./src/buildTools/generateIndexHTML.js && node ./src/buildTools/generateWebpackCfg.js && webpack serve --mode=development --open",
+    "build": "webpack --mode=production",
+    "sync:github": "git add -A && git commit && git push -u origin master"
   },
   "author": "",
   "license": "ISC",

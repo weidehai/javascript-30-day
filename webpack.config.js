@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require("path");
 
 
+
 module.exports = {
   entry: {
     'index':'./src/index.js',
@@ -23,18 +24,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /.scss$/,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
-        test: /\.(jpg|png)$/,
+        test: /.(jpg|png)$/,
         loader: "url-loader",
         options: {
           limit: 8 * 1024,
         },
       },
       {
-        test: /\.(html)$/,
+        test: /.(html)$/,
         loader: "html-loader",
       },
     ],
@@ -43,32 +44,28 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       inject: "body",
-      filename:'index.html',
-      chunks:['index']
-    }),
-    new HtmlWebpackPlugin({
+      filename: "index.html",
+      chunks: ["index"],
+    }),new HtmlWebpackPlugin({
       template: "./src/javascript-drum-kit/assets/index.html",
       inject: "body",
-      filename:'javascript-drum-kit.html',
-      chunks:['drumKit']
-    }),
-    new HtmlWebpackPlugin({
+      filename: "javascript-drum-kit.html",
+      chunks: ["drumKit"],
+    }),new HtmlWebpackPlugin({
       template: "./src/js-css-clock/assets/index.html",
       inject: "body",
-      filename:'clock.html',
-      chunks:['clock1']
-    }),
-    new HtmlWebpackPlugin({
+      filename: "clock.html",
+      chunks: ["clock1"],
+    }),new HtmlWebpackPlugin({
       template: "./src/css-variables/assets/index.html",
       inject: "body",
-      filename:'css-variables.html',
-      chunks:['css-variables']
-    }),
-    new HtmlWebpackPlugin({
+      filename: "css-variables.html",
+      chunks: ["css-variables"],
+    }),new HtmlWebpackPlugin({
       template: "./src/array/assets/index.html",
       inject: "body",
-      filename:'array.html',
-      chunks:['array']
+      filename: "array.html",
+      chunks: ["array"],
     }),
     new MiniCssExtractPlugin()
   ],

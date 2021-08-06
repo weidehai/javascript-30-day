@@ -2,6 +2,7 @@
   "router": [
     {
       "template": "./src/index.html",
+      "entry":"./src/index.js",
       "chunks":"index",
       "filename":"index.html"
     },
@@ -10,6 +11,7 @@
       "label": "✈ javascript-drum-kit",
       "href": "./javascript-drum-kit.html",
       "template": "./src/javascript-drum-kit/assets/index.html",
+      "entry":"./src/javascript-drum-kit/index.js",
       "chunks":"drumKit"
     },
     {
@@ -17,13 +19,19 @@
       "label": "✈ js-css-clock",
       "href": "./clock.html",
       "template": "./src/js-css-clock/assets/index.html",
+      "entry":"./src/js-css-clock/assets/js/clock1.js",
       "chunks":"clock1"
+    },
+    {
+      "entry":"./src/js-css-clock/assets/js/clock2.js",
+      "chunks":"clock2"
     },
     {
       "nav":true,
       "label": "✈ css-variables",
       "href": "./css-variables.html",
       "template": "./src/css-variables/assets/index.html",
+      "entry":"./src/css-variables/index.js",
       "chunks":"css-variables"
     },
     {
@@ -31,7 +39,24 @@
       "label": "✈ array",
       "href": "./array.html",
       "template": "./src/array/assets/index.html",
+      "entry":"./src/array/index.js",
       "chunks":"array"
+    },
+    {
+      "nav":true,
+      "label": "✈ flex-panel-gallery",
+      "href": "./flex-panel-gallery.html",
+      "template": "./src/flex-panel-gallery/assets/index.html",
+      "entry":"./src/flex-panel-gallery/index.js",
+      "chunks":"flex-panel-gallery"
+    },
+    {
+      "nav":true,
+      "label": "✈ ajax-type-head",
+      "href": "./ajax-type-head.html",
+      "template": "./src/ajax-type-head/assets/index.html",
+      "entry":"./src/ajax-type-head/index.js",
+      "chunks":"ajax-type-head"
     }
   ]
 }

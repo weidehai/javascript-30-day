@@ -1,0 +1,60 @@
+$base-color: #036;
+$pictures: (
+  "https://source.unsplash.com/gYl-UtwNg_I/1500x1500",
+  "https://source.unsplash.com/rFKUFzjPYiQ/1500x1500",
+  "https://images.unsplash.com/photo-1465188162913-8fb5709d6d57?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&cs=tinysrgb&w=1500&h=1500&fit=crop&s=967e8a713a4e395260793fc8c802901d",
+  "https://source.unsplash.com/ITjiVXcwVng/1500x1500",
+  "https://source.unsplash.com/3MNzGlQM7qs/1500x1500"
+);
+* {
+  padding: 0;
+  margin: 0;
+}
+.gallery {
+  display: flex;
+  height: 100vh;
+  .pictrue {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+    @for $i from 1 through 5 {
+      &:nth-child(#{$i}) {
+        background-image: url(nth($pictures, $i));
+      }
+    }
+    /* transition + 贝塞尔曲线 */
+    transition: flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11);
+  }
+  .flexZoom {
+    animation: flexZomm 1s ease forwards;
+  }
+  .flexShrink {
+    animation: flexShrink 1s ease forwards;
+  }
+  .open {
+    flex: 3;
+  }
+}
+
+/*动画*/
+@keyframes flexZomm {
+  70% {
+    flex-grow: 0.8;
+  }
+  100% {
+    flex-grow: 2;
+  }
+}
+
+@keyframes flexShrink {
+  0% {
+    flex-grow: 2;
+  }
+  70% {
+    flex-grow: 2.2;
+  }
+  100% {
+    flex-grow: 1;
+  }
+}
+

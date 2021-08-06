@@ -1,7 +1,7 @@
 const fs = require("fs/promises");
 const path = require("path");
 
-webpackCfg=`const HtmlWebpackPlugin = require("html-webpack-plugin");
+webpackCfg = `const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require("path");
 
@@ -9,12 +9,7 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    'index':'./src/index.js',
-    'drumKit':"./src/javascript-drum-kit/index.js",
-    'clock1':'./src/js-css-clock/assets/js/clock1.js',
-    'clock2':'./src/js-css-clock/assets/js/clock2.js',
-    'css-variables':'./src/css-variables/index.js',
-    'array':'./src/array/index.js',
+    {{entryconfig}}
   },
   output: {
     path: path.resolve(__dirname, "./dist"),
@@ -52,8 +47,7 @@ module.exports = {
       "@drum": path.resolve("src/javascript-drum-kit"),
     },
   },
-};`
-
+};`;
 
 async function readFile() {
   try {
@@ -61,8 +55,8 @@ async function readFile() {
       encoding: "utf-8",
     });
     content = JSON.parse(content);
-    webpackCfg = generateWebpackCfg(buildHTMLWebpackplg(content.router))
-    writeFile(webpackCfg)
+    webpackCfg = generateWebpackCfg(buildHTMLWebpackplg(content.router));
+    writeFile(webpackCfg);
   } catch (e) {
     console.log(e);
   }
@@ -70,26 +64,33 @@ async function readFile() {
 
 function buildHTMLWebpackplg(router) {
   let result = [];
+  let entry = [];
   router.forEach((item) => {
-    let options = `{
-      template: "${item.template}",
-      inject: "body",
-      filename: "${item.filename || item.href.substring(2)}",
-      chunks: ["${item.chunks}"],
-    }`
-    result.push(
-      `new HtmlWebpackPlugin(${options})`
-    );
+    if (item.template) {
+      let options = `{
+        template: "${item.template}",
+        inject: "body",
+        filename: "${item.filename || item.href.substring(2)}",
+        chunks: ["${item.chunks}"],
+      }`;
+      result.push(`new HtmlWebpackPlugin(${options})`);
+    }
+    if (item.entry) {
+      entry.push(`"${item.chunks}":"${item.entry}"`);
+    }
   });
-  return result.join(",")
+  return { html: result.join(","), entry: entry.join(",") };
 }
 
-function generateWebpackCfg(cfg){
-  return webpackCfg.replace(/\{\{HtmlWebpackPluginCfgs\}\}/g,cfg)
+function generateWebpackCfg(cfg) {
+  let { html, entry } = cfg;
+  return webpackCfg
+    .replace(/\{\{HtmlWebpackPluginCfgs\}\}/g, html)
+    .replace(/\{\{entryconfig\}\}/g, entry);
 }
 
-async function writeFile(cfg){
-  let result = await fs.writeFile(path.resolve(__dirname,'../../webpack.config.js'),cfg)
+async function writeFile(cfg) {
+  let result = await fs.writeFile(path.resolve(__dirname, "../../webpack.config.js"), cfg);
 }
 
-readFile()
+readFile();
